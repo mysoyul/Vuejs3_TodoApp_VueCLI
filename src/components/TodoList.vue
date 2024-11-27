@@ -14,22 +14,8 @@
 </template>
 
 <script setup>
-import { ref, onBeforeMount } from 'vue'
+import { ref } from 'vue'
 const todoItems = ref([])
-
-//Life cycle Hook
-onBeforeMount(() => {
-    console.log('mounted in the composition api!')
-    if (localStorage.length > 0) {
-        for (var i = 0; i < localStorage.length; i++) {
-            const storageKey = localStorage.key(i)
-            if (storageKey !== '__VUE_DEVTOOLS_KIT_TIMELINE_LAYERS_STATE__') {
-                todoItems.value.push(JSON.parse(localStorage.getItem(storageKey)))
-            }
-        }
-    }
-
-})
 
 const removeTodo = (todoItem, index) => {
     localStorage.removeItem(todoItem)
