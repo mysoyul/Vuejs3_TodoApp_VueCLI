@@ -1,10 +1,14 @@
 <template>
     <div>
-        <div>TodoInput</div>
+        <input type="text" :value="newTodoItem">
+        <button>추가</button>
     </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+
+const newTodoItem = ref("")
 
 </script>
 
