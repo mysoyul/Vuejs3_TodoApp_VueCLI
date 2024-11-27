@@ -1,8 +1,8 @@
 <template>
     <div>
         <ul>
-            <li v-for="(item, index) in todoItems" :key="index">
-                {{ item }}
+            <li v-for="(todo, index) in todoItems" :key="index">
+                {{ todo.item }}
                 <span class="removeBtn" @click="removeTodo(item, index)">
                     <i class="fas fa-trash-alt"></i>
                 </span>
@@ -22,7 +22,7 @@ onBeforeMount(() => {
         for (var i = 0; i < localStorage.length; i++) {
             const storageKey = localStorage.key(i)
             if (storageKey !== '__VUE_DEVTOOLS_KIT_TIMELINE_LAYERS_STATE__') {
-                todoItems.value.push(localStorage.getItem(storageKey))
+                todoItems.value.push(JSON.parse(localStorage.getItem(storageKey)))
             }
         }
     }
