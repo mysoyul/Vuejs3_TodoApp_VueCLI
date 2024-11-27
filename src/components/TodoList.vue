@@ -18,7 +18,9 @@ onBeforeMount(() => {
     if (localStorage.length > 0) {
         for (var i = 0; i < localStorage.length; i++) {
             const storageKey = localStorage.key(i)
-            todoItems.value.push(localStorage.getItem(storageKey))
+            if(storageKey !== '__VUE_DEVTOOLS_KIT_TIMELINE_LAYERS_STATE__'){
+                todoItems.value.push(localStorage.getItem(storageKey))
+            }
         }
     }
 
