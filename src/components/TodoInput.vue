@@ -44,6 +44,10 @@ const clearInput = () => {
 </script>
 
 <style scoped>
+i,span {
+    cursor: pointer;
+}
+
 input:focus {
     outline: none;
 }
