@@ -1,6 +1,6 @@
 <template>
     <div class="inputBox shadow">
-        <input type="text" :value="newTodoItem" @input="handleInput" @keyup.enter="addTodo">
+        <input type="text" :value="newTodoItem" @input="handleInput" @keyup.enter="addTodo" ref="myinput">
         <!-- <input type="text" v-model="newTodoItem"> -->
         <!-- <button @click="addTodo">추가</button> -->
         <span class="addContainer" @click="addTodo">
@@ -10,12 +10,18 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const newTodoItem = ref("")
+const myinput = ref(null)
 
 //사용자정의 Event를 선언함
 const emit = defineEmits(["input:todo"])
+
+//Life Cycle Hook 호출
+onMounted(() => {
+  myinput.value.focus()
+})
 
 const handleInput = (event) => {
     const todoText = event.target.value
