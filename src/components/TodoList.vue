@@ -1,6 +1,10 @@
 <template>
     <div>
-        <div>TodoList</div>
+        <ul>
+            <li v-for="(item, index) in todoItems" v-bind:key="index">
+                {{ item }}
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -14,10 +18,10 @@ onBeforeMount(() => {
     if (localStorage.length > 0) {
         for (var i = 0; i < localStorage.length; i++) {
             const storageKey = localStorage.key(i)
-            todoItems.value.push(storageKey)
+            todoItems.value.push(localStorage.getItem(storageKey))
         }
     }
-    console.log(todoItems.value)
+
 })
 </script>
 
