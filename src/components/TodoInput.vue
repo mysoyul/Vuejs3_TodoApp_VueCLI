@@ -34,7 +34,8 @@ const handleInput = (event) => {
 const addTodo = () => {
     const todoItem = newTodoItem.value
     //Input 필드에서 입력한 값을 로컬스토리지에 저장하기
-    localStorage.setItem(todoItem, todoItem)
+    const todoItemObj = {completed: false, item:todoItem}
+    localStorage.setItem(todoItem, JSON.stringify(todoItemObj))
     clearInput()
 }
 
