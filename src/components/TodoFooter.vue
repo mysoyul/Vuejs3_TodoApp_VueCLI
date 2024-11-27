@@ -10,7 +10,6 @@ export default {
         const clearTodo = () => {
             localStorage.clear()
         }
-
         return {
             clearTodo
         }
