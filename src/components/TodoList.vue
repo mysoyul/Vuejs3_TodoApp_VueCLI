@@ -5,7 +5,7 @@
                 <i class="fas fa-check checkBtn" :class="{ checkBtnCompleted: todo.completed }"
                     @click="toggleComplete(todo)"></i>
                 <span :class="{ textCompleted: todo.completed }">{{ todo.item }}</span>
-                <span class="removeBtn" @click="removeTodo(item, index)">
+                <span class="removeBtn" @click="removeTodo(todo.item, index)">
                     <i class="fas fa-trash-alt"></i>
                 </span>
             </li>
