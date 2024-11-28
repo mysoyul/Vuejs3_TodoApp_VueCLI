@@ -5,7 +5,7 @@
                 <i class="fas fa-check checkBtn" :class="{ checkBtnCompleted: todo.completed }"
                     @click="toggleComplete(todo, index)"></i>
                 <span :class="{ textCompleted: todo.completed }">{{ todo.item }}</span>
-                <span class="removeBtn" @click="removeTodo(todo.item, index)">
+                <span class="removeBtn" @click="removeTodo(todo, index)">
                     <i class="fas fa-trash-alt"></i>
                 </span>
             </li>
@@ -20,10 +20,10 @@ import { computed } from "vue"
 const store = useStore()
 const todoItems = computed(() => store.state.todoItems)
 
-const emit = defineEmits(["remove:todo", "toggle:todo"])
+const emit = defineEmits(["toggle:todo"])
 
 const removeTodo = (todoItem, index) => {
-    emit("remove:todo", todoItem, index)
+    store.commit("removeTodo", { todoItem, index })
 }
 
 const toggleComplete = (todo, index) => {
