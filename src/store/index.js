@@ -37,6 +37,10 @@ export const store = createStore({
             state.todoItems[index].completed = !completed
             localStorage.removeItem(item);
             localStorage.setItem(item, JSON.stringify(state.todoItems[index]));
+        },
+        clearTodo(state) {
+            localStorage.clear()
+            state.todoItems = []
         }
     }, //mutations
 
