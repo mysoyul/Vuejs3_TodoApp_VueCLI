@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput></TodoInput>
+    <TodoInput @add:todo="addTodo"></TodoInput>
     <TodoList :todo-array="todoItems"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
@@ -31,13 +31,20 @@ export default {
         for (var i = 0; i < localStorage.length; i++) {
           const storageKey = localStorage.key(i)
           if (storageKey !== '__VUE_DEVTOOLS_KIT_TIMELINE_LAYERS_STATE__') {
-            todoItems.value.push(JSON.parse(localStorage.getItem(storageKey)))
+            todoItems.push(JSON.parse(localStorage.getItem(storageKey)))
           }
         }
       }
-    })
+    }) //onBeforeMount
 
-    return { todoItems };
+    const addTodo = (todoItemStr) => {
+      const todoItemObj = { completed: false, item: todoItemStr };
+      //Input 필드에서 입력한 값을 로컬스토리지에 저장하기
+      localStorage.setItem(todoItemStr, JSON.stringify(todoItemObj));
+      todoItems.push(todoItemObj);
+    } //addTodo
+
+    return { todoItems, addTodo };
   }, //setup
 }
 </script>

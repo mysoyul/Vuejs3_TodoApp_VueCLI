@@ -16,7 +16,7 @@ const newTodoItem = ref("")
 const myinput = ref(null)
 
 //사용자정의 Event를 선언함
-const emit = defineEmits(["input:todo"])
+const emit = defineEmits(["input:todo","add:todo"])
 
 //Life Cycle Hook 호출
 onMounted(() => {
@@ -33,9 +33,7 @@ const handleInput = (event) => {
 
 const addTodo = () => {
     const todoItem = newTodoItem.value
-    //Input 필드에서 입력한 값을 로컬스토리지에 저장하기
-    const todoItemObj = {completed: false, item:todoItem}
-    localStorage.setItem(todoItem, JSON.stringify(todoItemObj))
+    emit('add:todo', todoItem)
     clearInput()
 }
 
