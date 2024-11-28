@@ -7,7 +7,7 @@
                 <ul class="list-group">
                     <li v-for="post in posts" :key="post.id" class="list-group-item">
                         <router-link :to="{ name: 'post', params: { id: post.id } }" class="link-primary">
-                            [ID: {{ post.id }}] {{ post.title }}
+                            [ID: {{ post.id }}] {{ summary(post.title) }}
                         </router-link>
                     </li>
                 </ul>
@@ -22,9 +22,11 @@
 <script setup>
 import { useStore } from "vuex"
 import { onBeforeMount, computed } from "vue"
+
 const store = useStore()
 const posts = computed(() => store.state.modulePost.posts)
 const loadingStatus = computed(() => store.state.modulePost.loadingStatus)
+
 // onBeforeMount(() => {
 //     fetchData();
 // });
@@ -35,9 +37,18 @@ onBeforeMount(async () => {
         console.log(error)
     }
 });
+
 const fetchData = () => {
     store.dispatch("modulePost/loadPosts")
 };
+
+const summary = (val) => {
+    if (typeof val === "string") {
+        return val.substring(0, 20) + "...";
+    }
+    return val;
+};
+
 </script>
 <style scoped>
 .list {
