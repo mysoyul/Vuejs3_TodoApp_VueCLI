@@ -20,14 +20,12 @@ import { computed } from "vue"
 const store = useStore()
 const todoItems = computed(() => store.state.todoItems)
 
-const emit = defineEmits(["toggle:todo"])
-
-const removeTodo = (todoItem, index) => {
-    store.commit("removeTodo", { todoItem, index })
+const removeTodo = (todo, index) => {
+    store.commit("removeTodo", { todo, index })
 }
 
 const toggleComplete = (todo, index) => {
-    emit('toggle:todo', todo, index)
+    store.commit("toggleTodo", { todo, index })
 }
 
 </script>
