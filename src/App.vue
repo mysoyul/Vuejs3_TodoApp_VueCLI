@@ -2,10 +2,8 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput @add:todo="addTodo"></TodoInput>
-    <TodoList :todo-array="todoItems" 
-      @remove:todo="removeTodo"
-      @toggle:todo="toggleTodo"></TodoList>
-    <TodoFooter></TodoFooter>
+    <TodoList :todo-array="todoItems" @remove:todo="removeTodo" @toggle:todo="toggleTodo"></TodoList>
+    <TodoFooter @clear:todo="clearTodo"></TodoFooter>
   </div>
 
 </template>
@@ -58,8 +56,12 @@ export default {
       localStorage.setItem(item, JSON.stringify(todoItems[index]));
     }
 
+    const clearTodo = () => {
+      localStorage.clear()
+      todoItems.splice(0)
+    }
 
-    return { todoItems, addTodo, removeTodo, toggleTodo };
+    return { todoItems, addTodo, removeTodo, toggleTodo, clearTodo };
   }, //setup
 }
 </script>
