@@ -28,12 +28,12 @@ export const store = createStore({
             state.todoItems.push(obj);
         },
         removeTodo(state, payload) {
-            const { todoItem: { item }, index } = payload
+            const { todo: { item }, index } = payload
             localStorage.removeItem(item);
             state.todoItems.splice(index, 1);
         },
         toggleTodo(state, payload) {
-            const { todoItem: { item, completed }, index } = payload
+            const { todo: { item, completed }, index } = payload
             state.todoItems[index].completed = !completed
             localStorage.removeItem(item);
             localStorage.setItem(item, JSON.stringify(state.todoItems[index]));
