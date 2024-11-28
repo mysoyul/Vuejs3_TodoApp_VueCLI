@@ -44,6 +44,7 @@ body {
 input {
   border-style: groove;
   width: 200px;
+  height: 85%;
 }
 
 button {
