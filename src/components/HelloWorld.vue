@@ -1,33 +1,61 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    
+  <div id="app">
+    <TodoHeader></TodoHeader>
+    <TodoInput></TodoInput>
+    <TodoList></TodoList>
+    <TodoFooter></TodoFooter>
   </div>
+
 </template>
 
 <script>
+import TodoHeader from '@/components/TodoHeader.vue'
+import TodoInput from '@/components/TodoInput.vue'
+import TodoList from '@/components/TodoList.vue'
+import TodoFooter from '@/components/TodoFooter.vue'
+
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
+  name: 'App',
+  components: {
+    TodoHeader, TodoInput, TodoList, TodoFooter
+  },
+  setup() {
+
+    return { };
+  }, //setup
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+body {
+  text-align: center;
+  background-color: #f6f6f6;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+input {
+  border-style: groove;
+  width: 200px;
 }
-a {
-  color: #42b983;
+
+button {
+  border-style: groove;
+}
+
+.shadow {
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03);
+}
+
+i,
+span {
+  cursor: pointer;
 }
 </style>
