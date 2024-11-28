@@ -1,4 +1,7 @@
 import { createStore, createLogger } from "vuex"
+import axios from "axios"
+
+import http from "@/common/http-common"
 
 const storage = {
     fetch() {
@@ -21,7 +24,29 @@ export const store = createStore({
     state: {
         todoItems: storage.fetch()
     },
+    actions: {
+        loadTodoItems({ commit }) {
+            http
+                .get('/todos')
+                .then(r => r.data)
+                .then(items => {
+                    commit('setTodoItems', items)
+                })
+                .catch(error => {
+                    if (axios.isAxiosError(error)) {
+                        console.log(error?.response?.status +
+                            ' : ' + error.message)
+                    } else {
+                        console.error(error);
+                    }
+                });
+        },
+
+    },
     mutations: {
+        setTodoItems(state, items) {
+            state.todoItems = items;
+        },
         addTodo(state, todoItem) {
             const obj = { completed: false, item: todoItem };
             localStorage.setItem(todoItem, JSON.stringify(obj));
