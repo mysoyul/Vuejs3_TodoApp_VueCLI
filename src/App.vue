@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { reactive, onBeforeMount } from "vue"
+import { reactive } from "vue"
 
 import TodoHeader from '@/components/TodoHeader.vue'
 import TodoInput from '@/components/TodoInput.vue'
