@@ -21,4 +21,11 @@ export const store = createStore({
     state: {
         todoItems: storage.fetch()
     },
+    mutations: {
+        addTodo(state, todoItem) {
+            const obj = { completed: false, item: todoItem };
+            localStorage.setItem(todoItem, JSON.stringify(obj));
+            state.todoItems.push(obj);
+        },
+    },
 })

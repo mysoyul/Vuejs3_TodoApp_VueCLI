@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput @add:todo="addTodo"></TodoInput>
+    <TodoInput></TodoInput>
     <TodoList :todo-array="todoItems" @remove:todo="removeTodo" @toggle:todo="toggleTodo"></TodoList>
     <TodoFooter @clear:todo="clearTodo"></TodoFooter>
   </div>
@@ -24,13 +24,6 @@ export default {
   setup() {
     const todoItems = reactive([])
 
-    const addTodo = (todoItemStr) => {
-      const todoItemObj = { completed: false, item: todoItemStr };
-      //Input 필드에서 입력한 값을 로컬스토리지에 저장하기
-      localStorage.setItem(todoItemStr, JSON.stringify(todoItemObj));
-      todoItems.push(todoItemObj);
-    } //addTodo
-
     const removeTodo = (todoItemStr, index) => {
       localStorage.removeItem(todoItemStr);
       todoItems.splice(index, 1);
@@ -48,7 +41,7 @@ export default {
       todoItems.splice(0)
     }
 
-    return { todoItems, addTodo, removeTodo, toggleTodo, clearTodo };
+    return { todoItems, removeTodo, toggleTodo, clearTodo };
   }, //setup
 }
 </script>

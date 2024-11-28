@@ -23,6 +23,9 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import MyModal from '@/components/common/MyModal.vue'
+import { useStore } from "vuex"
+
+const store = useStore()
 
 const showModal = ref(false)
 
@@ -30,7 +33,7 @@ const newTodoItem = ref("")
 const myinput = ref(null)
 
 //사용자정의 Event를 선언함
-const emit = defineEmits(["input:todo", "add:todo"])
+const emit = defineEmits(["input:todo"])
 
 //Life Cycle Hook 호출
 onMounted(() => {
@@ -48,7 +51,7 @@ const handleInput = (event) => {
 const addTodo = () => {
     const todoItem = newTodoItem.value
     if (todoItem !== "") {
-        emit("add:todo", todoItem)
+        store.commit("addTodo", todoItem)
         clearInput();
     } else {
         showModal.value = !showModal.value
